@@ -84,7 +84,7 @@
 
       <!-- Header -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-[60px] mb-14">
-        <h2 class="font-[Anton_SC] text-[52px] text-[#0f1c24] uppercase leading-none">Wat kost dit?</h2>
+        <h2 class="pricing-heading">Wat kost dit?</h2>
         <p class="text-[17px] text-[#636E72] leading-[1.8] pt-2">
           Beginnen is gratis. Je betaalt pas als je meer opslagruimte of extra functies wilt. Twee opties: losse producten of een abonnement.
         </p>
@@ -386,6 +386,15 @@ const features = [
   top: -2px;
 }
 
+.pricing-heading {
+  font-family: 'Anton SC', sans-serif;
+  font-size: 52px;
+  color: #0f1c24;
+  text-transform: uppercase;
+  line-height: 1;
+  font-weight: normal;
+}
+
 /* CTA */
 .cta-section {
   background: #0f1c24;
@@ -423,7 +432,7 @@ const features = [
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 0 24px 60px;
+    padding: 0 24px 100px;
   }
 
   .hero-bottom {
