@@ -1,4 +1,3 @@
-import { useAsyncData } from 'nuxt'
 import type { User } from '~/types'
 
 export const useSupabaseAuth = () => {
