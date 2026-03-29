@@ -8,11 +8,16 @@
   }
 
   body {
-    @apply bg-[#FAF8F5] text-gray-900;
+    font-family: 'Nunito', sans-serif;
+    background: #FAF8F5;
+    color: #2D3436;
+    line-height: 1.7;
+    font-size: 17px;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold;
+    font-weight: normal;
   }
 }
 

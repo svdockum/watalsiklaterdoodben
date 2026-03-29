@@ -1,468 +1,447 @@
 <template>
   <div>
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden pt-20 pb-32 md:pt-32 md:pb-48">
-      <!-- Gradient Background -->
-      <div class="absolute inset-0 bg-gradient-hero opacity-10"></div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-section">
+      <!-- Noise texture overlay -->
+      <div class="hero-noise" aria-hidden="true"></div>
+      <!-- Radial glow -->
+      <div class="hero-glow" aria-hidden="true"></div>
+      <!-- Vertical scroll line -->
+      <div class="scroll-line" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <h1 class="hero-heading">
+          Ja,<span class="text-[#D4A857]">wat</span> dan?
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-sub">
+            Dan is hier een plek om alles te bewaren wat belangrijk voor je is. Voor jou, voor later, voor diegene die je achterlaat.
+          </p>
+          <NuxtLink to="/signup" class="hero-btn group">
+            Laat iets moois achter
+            <span class="arrow transition-transform duration-300 group-hover:translate-x-1" style="font-size: 32px; line-height: 1; position: relative; top: -2px;">›</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INTRO ===== -->
+    <section id="wat" class="max-w-[1300px] mx-auto px-10 py-[120px] grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+      <div class="intro-big">
+        Niemand denkt er graag over na.
+        <span class="text-[#2C5F7C]">En toch is het een van de mooiste dingen die je kunt doen.</span>
+      </div>
+      <div class="intro-text">
+        <p>Op deze plek zorg je dat de mensen die je liefhebt niet alleen staan als jij er niet meer bent. Met persoonlijke herinneringen, met praktische hulp, en met alles wat jij belangrijk vindt.</p>
+        <p class="mt-4">Geen ingewikkelde formulieren. Geen juridisch jargon. Gewoon een fijne plek om het te regelen, op jouw tempo.</p>
+        <p class="mt-4">Makkelijk alles bij de hand met de app <a href="/app" class="text-[#2C5F7C] font-bold hover:underline">voor iOS en Android</a>.</p>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section id="features" class="px-10 pb-[120px] max-w-[1300px] mx-auto">
+
+      <!-- Features header -->
+      <div class="flex justify-between items-end mb-12 border-t-[3px] border-[#0f1c24] pt-5">
+        <h2 class="font-[Anton_SC] text-[14px] uppercase tracking-[4px] text-[#95A5A6]">Wat kun je allemaal</h2>
+      </div>
+
+      <!-- Feature rows -->
       <div
-        class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-accent-400/20 to-transparent rounded-full blur-3xl"
-      ></div>
-      <div
-        class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-secondary-400/20 to-transparent rounded-full blur-3xl"
-      ></div>
-
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl">
-          <h1 class="section-heading mb-6 leading-tight">
-            <span class="gradient-text">
-              Plan je erfenis
-            </span>
-            <br>
-            <span class="text-gray-900">
-              met vrede van geest
-            </span>
-          </h1>
-
-          <p class="section-subtitle mb-8 text-gray-700">
-            Deel je herinneringen, organiseer je zaken en help je nabestaanden. 
-            Wat als ik later dood ben maakt het eenvoudig en veilig.
-          </p>
-
-          <div class="flex flex-col sm:flex-row gap-4">
-            <NuxtLink to="/signup" class="btn-primary">
-              Start je gratis
-            </NuxtLink>
-            <button class="btn-secondary">
-              Bekijk demo
-            </button>
-          </div>
-
-          <!-- Trust Badges -->
-          <div class="mt-12 flex flex-col sm:flex-row gap-8 text-sm text-gray-600">
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span>GDPR Compliant</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span>256-bit Versleuteling</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span>Kosteloos voor iedereen</span>
-            </div>
-          </div>
+        v-for="(feature, i) in features"
+        :key="i"
+        class="feature-row group"
+      >
+        <div class="font-[Anton_SC] text-[56px] text-[#e0ddd8] leading-none transition-colors duration-300 group-hover:text-[#D4A857]">
+          {{ feature.num }}
+        </div>
+        <div class="font-[Anton_SC] text-[32px] text-[#0f1c24] uppercase leading-[1.1] pt-[6px]">
+          {{ feature.title }}
+        </div>
+        <div class="text-[15px] text-[#636E72] leading-[1.8] pt-[10px]">
+          <span v-if="feature.linkText">
+            {{ feature.desc }}
+            <a :href="feature.link" class="text-[#2C5F7C] font-bold no-underline hover:underline">{{ feature.linkText }}</a>
+          </span>
+          <span v-else>{{ feature.desc }}</span>
         </div>
       </div>
+
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-16 bg-white/40 backdrop-blur-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div class="text-center">
-            <div class="text-4xl font-bold gradient-text mb-2">45K+</div>
-            <p class="text-gray-600">Actieve gebruikers</p>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold gradient-text mb-2">1M+</div>
-            <p class="text-gray-600">Herinneringen gedeeld</p>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold gradient-text mb-2">98%</div>
-            <p class="text-gray-600">Tevreden gebruikers</p>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
-            <p class="text-gray-600">Ondersteuning beschikbaar</p>
-          </div>
-        </div>
-      </div>
+    <!-- ===== STATEMENT ===== -->
+    <section class="statement-section">
+      <div class="statement-glow" aria-hidden="true"></div>
+      <blockquote class="statement-quote">
+        Later bestaat niet,<br>als je er <span class="text-[#D4A857]">niet meer bent.</span>
+      </blockquote>
+      <!-- <div class="h-7"></div> -->
     </section>
 
-    <!-- Features Bento Grid Section -->
-    <section class="py-20 md:py-32">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="section-heading mb-4">Alles wat je nodig hebt</h2>
-          <p class="section-subtitle">
-            Een compleet platform voor voorbereiding, herinneringen en nabestaanden
-          </p>
-        </div>
+    <!-- ===== PRICING ===== -->
+    <section id="kosten" class="max-w-[1300px] mx-auto px-10 py-[120px]">
 
-        <!-- Bento Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Large Feature Card 1 -->
-          <div class="md:col-span-2 glass-card">
-            <div class="flex items-start justify-between">
-              <div>
-                <h3 class="text-2xl font-heading font-bold text-gray-900 mb-3">
-                  Voorbereiding
-                </h3>
-                <p class="text-gray-700 mb-6 leading-relaxed">
-                  Organiseer je financiële zaken, juridische documenten en persoonlijke wensen 
-                  op één veilige plek.
-                </p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-secondary-500 rounded-full"></span>
-                    Testament en juridische documenten
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-secondary-500 rounded-full"></span>
-                    Financiële informatie
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-secondary-500 rounded-full"></span>
-                    Begrafenis wensen
-                  </li>
-                </ul>
-              </div>
-              <div class="text-5xl opacity-20">📋</div>
-            </div>
-          </div>
-
-          <!-- Feature Card 2 -->
-          <div class="glass-card">
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Herinneringen
-            </h3>
-            <p class="text-gray-700 text-sm mb-4">
-              Bewaar je mooiste momenten, foto's en verhalen.
-            </p>
-            <div class="text-4xl opacity-30">📸</div>
-          </div>
-
-          <!-- Feature Card 3 -->
-          <div class="glass-card">
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Checklists
-            </h3>
-            <p class="text-gray-700 text-sm mb-4">
-              Volg je voortgang met interactieve checklists.
-            </p>
-            <div class="text-4xl opacity-30">✓</div>
-          </div>
-
-          <!-- Feature Card 4 -->
-          <div class="glass-card">
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Versleuteling
-            </h3>
-            <p class="text-gray-700 text-sm mb-4">
-              Jouw data is altijd beveiligd en privé.
-            </p>
-            <div class="text-4xl opacity-30">🔒</div>
-          </div>
-
-          <!-- Large Feature Card 2 -->
-          <div class="md:col-span-2 glass-card">
-            <div class="flex items-start justify-between">
-              <div>
-                <h3 class="text-2xl font-heading font-bold text-gray-900 mb-3">
-                  Nabestaanden
-                </h3>
-                <p class="text-gray-700 mb-6 leading-relaxed">
-                  Laat belangrijke informatie achter voor je naasten en maak het makkelijker 
-                  voor hen in moeilijke tijden.
-                </p>
-                <ul class="space-y-2 text-sm text-gray-600">
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-secondary-500 rounded-full"></span>
-                    Vertrouwde contacten beheren
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-secondary-500 rounded-full"></span>
-                    Gecontroleerde toegang
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-secondary-500 rounded-full"></span>
-                    Erfenis berichten
-                  </li>
-                </ul>
-              </div>
-              <div class="text-5xl opacity-20">👥</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="py-20 md:py-32 bg-white/40 backdrop-blur-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="section-heading mb-4">Hoe het werkt</h2>
-          <p class="section-subtitle">
-            Drie eenvoudige stappen om aan de slag te gaan
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Step 1 -->
-          <div class="relative">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-bold mb-6">
-              1
-            </div>
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Maak een account
-            </h3>
-            <p class="text-gray-700">
-              Registreer gratis in minder dan 2 minuten. Geen creditcard nodig.
-            </p>
-            <div
-              v-if="true"
-              class="hidden md:block absolute top-12 right-0 w-full h-1 bg-gradient-to-r from-primary-500 to-transparent opacity-30"
-              style="width: 120%; left: 50%"
-            ></div>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="relative">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-bold mb-6">
-              2
-            </div>
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Vul je informatie in
-            </h3>
-            <p class="text-gray-700">
-              Voeg je herinneringen, wensen en belangrijke informatie toe aan je kluis.
-            </p>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="relative">
-            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-bold mb-6">
-              3
-            </div>
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Deel met nabestaanden
-            </h3>
-            <p class="text-gray-700">
-              Geef vertrouwde contacten toegang en wees gerustgesteld dat alles klaar is.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="py-20 md:py-32">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="section-heading mb-4">Eenvoudige prijzen</h2>
-          <p class="section-subtitle">
-            Kies het plan dat het beste bij jou past
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Free Plan -->
-          <div class="glass-card border-2 border-gray-200 hover:border-primary-300">
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
-              Gratis
-            </h3>
-            <p class="text-sm text-gray-600 mb-6">Voor beginners</p>
-            <div class="text-3xl font-bold text-gray-900 mb-6">
-              €0<span class="text-sm text-gray-600">/maand</span>
-            </div>
-            <ul class="space-y-3 mb-8 text-sm text-gray-700">
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                Basis voorbereiding
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                1 vertrouwde contact
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                5 GB opslag
-              </li>
-            </ul>
-            <button class="w-full btn-secondary">
-              Gratis starten
-            </button>
-          </div>
-
-          <!-- Pro Plan -->
-          <div class="glass-card border-2 border-primary-300 relative">
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-              Populair
-            </div>
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
-              Pro
-            </h3>
-            <p class="text-sm text-gray-600 mb-6">Voor families</p>
-            <div class="text-3xl font-bold text-gray-900 mb-6">
-              €4.99<span class="text-sm text-gray-600">/maand</span>
-            </div>
-            <ul class="space-y-3 mb-8 text-sm text-gray-700">
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                Alles uit Gratis
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                Onbeperkte contacten
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                50 GB opslag
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                Prioriteit support
-              </li>
-            </ul>
-            <button class="w-full btn-primary">
-              Nu upgraden
-            </button>
-          </div>
-
-          <!-- Premium Plan -->
-          <div class="glass-card border-2 border-gray-200 hover:border-primary-300">
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
-              Premium
-            </h3>
-            <p class="text-sm text-gray-600 mb-6">Voor professionals</p>
-            <div class="text-3xl font-bold text-gray-900 mb-6">
-              €9.99<span class="text-sm text-gray-600">/maand</span>
-            </div>
-            <ul class="space-y-3 mb-8 text-sm text-gray-700">
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                Alles uit Pro
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                500 GB opslag
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                Video tutorials
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                1-op-1 coaching
-              </li>
-            </ul>
-            <button class="w-full btn-secondary">
-              Probeer Premium
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 md:py-32 bg-gradient-hero relative overflow-hidden">
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-      </div>
-
-      <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="section-heading mb-6 text-white">
-          Klaar om te beginnen?
-        </h2>
-        <p class="text-xl text-white/90 mb-8 leading-relaxed">
-          Begin vandaag nog met het plannen van je erfenis. Het kost minder dan 5 minuten.
+      <!-- Header -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-[60px] mb-14">
+        <h2 class="font-[Anton_SC] text-[52px] text-[#0f1c24] uppercase leading-none">Wat kost dit?</h2>
+        <p class="text-[17px] text-[#636E72] leading-[1.8] pt-2">
+          Beginnen is gratis. Je betaalt pas als je meer opslagruimte of extra functies wilt. Twee opties: losse producten of een abonnement.
         </p>
-        <button class="btn-primary text-lg">
-          Maak gratis account aan
-        </button>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr_1fr] gap-5">
+
+        <!-- Free card -->
+        <div class="rounded-[20px] p-10 bg-[#0f1c24] text-white">
+          <span class="inline-block bg-[#D4A857] text-[#0f1c24] px-3 py-1 rounded-md font-extrabold text-[11px] uppercase tracking-[1.5px] mb-5">Altijd gratis</span>
+          <h3 class="font-[Anton_SC] text-[28px] uppercase leading-[1.1] mb-3">Begin zonder te betalen</h3>
+          <p class="text-[15px] opacity-55 leading-[1.7] mb-8">Herinneringen achterlaten, wensen vastleggen, documenten opslaan en nabestaandenhulp. Gratis, voor altijd.</p>
+          <NuxtLink to="/signup" class="inline-flex items-center gap-2 bg-[#D4A857] text-[#0f1c24] font-bold text-[15px] px-6 py-3 rounded-[12px] hover:brightness-110 transition-all">Laat iets moois achter <span style="font-size: 30px; line-height: 1;">›</span></NuxtLink>
+        </div>
+
+        <!-- Losse producten -->
+        <div class="rounded-[20px] p-10 bg-white border-2 border-[#2C5F7C] flex flex-col">
+          <h4 class="font-[Anton_SC] text-[22px] text-[#0f1c24] uppercase mb-2">Losse producten</h4>
+          <p class="text-[14px] text-[#636E72] leading-[1.7] mb-4">Betaal alleen voor wat je gebruikt. Bijvoorbeeld extra opslagruimte of een bepaalde functionaliteit.</p>
+          <div class="mt-auto bg-[#FAF8F5] rounded-[10px] p-[14px] text-[13px] text-[#2D3436] leading-[1.7] h-[110px]">
+            <strong class="text-[#2C5F7C]">Bijvoorbeeld:</strong><br>
+            5GB opslag<br>
+            Persoonlijke landingspagina<br>
+            Afdrukken van kaarten of brieven
+          </div>
+        </div>
+
+        <!-- Abonnement -->
+        <div class="rounded-[20px] p-10 bg-white border-2 border-[#2C5F7C] flex flex-col">
+          <h4 class="font-[Anton_SC] text-[22px] text-[#0f1c24] uppercase mb-2">Abonnement</h4>
+          <p class="text-[14px] text-[#636E72] leading-[1.7] mb-4">Alles in één. Meer functies, meer ruimte, altijd voordeliger.</p>
+          <div class="mt-auto bg-[#FAF8F5] rounded-[10px] p-[14px] text-[13px] text-[#2D3436] leading-[1.7] h-[110px]">
+            <strong class="text-[#2C5F7C]">Vanaf €0,99 / maand.</strong><br>
+            Meer opslag, functionaliteit.<br>
+            Persoonlijke support.<br>
+            Eigen url (mits beschikbaar)
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Export bar -->
+      <div class="mt-5 px-8 py-5 bg-[#FAF8F5] rounded-[14px] flex items-center justify-between border-2 border-dashed border-[#d5d0c8] flex-wrap gap-2">
+        <p class="text-[15px] text-[#636E72] font-semibold"><strong class="text-[#0f1c24]">Je data is van jou.</strong> Altijd exporteerbaar, ongeacht je plan.</p>
+        <p class="text-[15px] text-[#636E72] font-semibold">Geen verrassingen.</p>
+      </div>
+
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div class="relative z-10 text-center">
+        <h2 class="cta-heading">Op jouw tempo, op jouw manier.</h2>
+        <p class="text-[17px] text-white/50 mb-9">Begin vandaag en deel met je naasten, wanneer je wilt.</p>
+        <NuxtLink
+          to="/signup"
+          class="cta-btn"
+        >
+          Laat iets moois achter <span class="cta-caret">›</span>
+        </NuxtLink>
       </div>
     </section>
+
   </div>
 </template>
 
 <script setup lang="ts">
-// Page metadata
 definePageMeta({
   layout: 'default',
 })
+
+const features = [
+  {
+    num: '01',
+    title: 'Laat herinneringen achter',
+    desc: 'Schrijf brieven, neem video\'s op, spreek audioboodschappen in. Maak fotoalbums met je verhaal bij elke foto. Kies wanneer en aan wie ze worden bezorgd.',
+    linkText: null,
+    link: null,
+  },
+  {
+    num: '02',
+    title: 'Help je nabestaanden',
+    desc: 'Na een overlijden moeten er tientallen dingen geregeld worden. Wij helpen stap voor stap: instanties, brieven, documenten, tijdlijnen.',
+    linkText: null,
+    link: null,
+  },
+  {
+    num: '03',
+    title: 'Leg je wensen vast',
+    desc: 'Begrafenis of crematie, welke muziek, welke bloemen, wie er spreekt. Leg het vast zodat jouw wensen gerespecteerd worden.',
+    linkText: null,
+    link: null,
+  },
+  {
+    num: '04',
+    title: 'Download de app',
+    desc: 'Alles makkelijk delen zoals leuke foto\'s van memorabele momenten. ',
+    linkText: 'Download de app ↓',
+    link: '/app',
+  },
+]
 </script>
+
+<style scoped>
+/* Hero */
+.hero-section {
+  min-height: 100vh;
+  background: #0f1c24;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 40px 80px;
+  overflow: hidden;
+}
+
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-glow {
+  position: absolute;
+  bottom: -200px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 168, 87, 0.12), transparent 70%);
+  z-index: 1;
+}
+
+.scroll-line {
+  position: absolute;
+  left: 40px;
+  bottom: 0;
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-heading {
+  font-family: 'Anton SC', sans-serif;
+  font-size: clamp(60px, 10vw, 120px);
+  color: white;
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  max-width: 1000px;
+  letter-spacing: -1px;
+  font-weight: normal;
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+.hero-sub {
+  font-size: 21px;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 50%;
+  line-height: 1.7;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 40px;
+  background: white;
+  color: #0f1c24;
+  font-weight: 800;
+  font-size: 16px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.hero-btn:hover {
+  background: #D4A857;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(212, 168, 87, 0.3);
+}
+
+.arrow {
+  font-size: 20px;
+}
+
+/* Intro */
+.intro-big {
+  font-family: 'Anton SC', sans-serif;
+  font-size: 42px;
+  color: #0f1c24;
+  line-height: 1.1;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.intro-text {
+  font-size: 17px;
+  color: #636E72;
+  line-height: 1.9;
+  padding-top: 8px;
+}
+
+/* Features */
+.feature-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr;
+  gap: 40px;
+  padding: 44px 0;
+  border-bottom: 1px solid #e0ddd8;
+  align-items: start;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.feature-row:hover {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 -20px;
+  background: rgba(44, 95, 124, 0.02);
+  border-radius: 16px;
+}
+
+/* Statement */
+.statement-section {
+  background: #0f1c24;
+  padding: 140px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.statement-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(91, 154, 111, 0.06), transparent 60%);
+}
+
+.statement-quote {
+  font-family: 'Anton SC', sans-serif;
+  font-size: clamp(32px, 5vw, 64px);
+  color: white;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.1;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  font-weight: normal;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 48px;
+  background: white;
+  color: #2C5F7C;
+  font-weight: 800;
+  font-size: 17px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-btn:hover {
+  background: #D4A857;
+  color: #0f1c24;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(212, 168, 87, 0.25);
+}
+
+.cta-caret {
+  font-size: 34px;
+  line-height: 1;
+  position: relative;
+  top: -2px;
+}
+
+/* CTA */
+.cta-section {
+  background: #0f1c24;
+  padding: 120px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-glow {
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 168, 87, 0.12), transparent 60%);
+}
+
+.cta-heading {
+  font-family: 'Anton SC', sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  color: white;
+  margin-bottom: 24px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .feature-row {
+    grid-template-columns: 60px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 0 24px 60px;
+  }
+
+  .hero-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-sub {
+    max-width: 100%;
+  }
+
+  .feature-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .scroll-line {
+    display: none;
+  }
+}
+</style>

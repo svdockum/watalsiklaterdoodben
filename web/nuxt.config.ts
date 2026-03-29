@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Anton+SC&family=Special+Gothic+Expanded+One&family=Nunito:wght@300;400;600;700;800&display=swap',
         },
       ],
     },

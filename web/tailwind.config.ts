@@ -55,6 +55,7 @@ export default {
         serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
         heading: ['Special Gothic Expanded One', ...defaultTheme.fontFamily.sans],
         sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+        display: ['Anton SC', ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
         'gradient-to-br-warm': 'linear-gradient(135deg, rgba(44,95,124,0.1) 0%, rgba(91,154,111,0.1) 100%)',
