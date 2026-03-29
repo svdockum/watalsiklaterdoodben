@@ -1,0 +1,30 @@
+# Nuxt
+.nuxt
+dist
+.output
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-error.log
+
+# IDE
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Build
+.nuxt-types

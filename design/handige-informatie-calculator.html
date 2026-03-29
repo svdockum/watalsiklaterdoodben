@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handige informatie — Uitvaartkosten Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Merienda:wght@400;700;900&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2C5F7C;
+    --primary-dark: #1a3d52;
+    --green: #5B9A6F;
+    --green-light: #e8f5ed;
+    --bg: #FAF8F5;
+    --surface: #FFFFFF;
+    --text: #2D3436;
+    --text-light: #636E72;
+    --text-muted: #95A5A6;
+    --warm-gray: #f4f1ec;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 17px;
+    padding: 40px 24px;
+  }
+
+  /* ===== PAGE HEADER (ingelogd) ===== */
+  .page-header {
+    max-width: 800px;
+    margin: 0 auto 32px;
+  }
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .breadcrumb a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .breadcrumb span { margin: 0 6px; }
+  .page-header h1 {
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    font-size: 32px;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .page-header p {
+    font-size: 16px;
+    color: var(--text-light);
+    max-width: 520px;
+  }
+
+  /* ===== SIDEBAR NAV (handige informatie menu) ===== */
+  .layout {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+  }
+  .sidebar { position: sticky; top: 40px; align-self: start; }
+  .sidebar h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  .sidebar ul { list-style: none; }
+  .sidebar li { margin-bottom: 4px; }
+  .sidebar a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    transition: all 0.2s;
+  }
+  .sidebar a:hover { background: rgba(44,95,124,0.06); color: var(--primary); }
+  .sidebar a.active {
+    background: var(--primary);
+    color: white;
+  }
+
+  /* ===== CALCULATOR ===== */
+  .calc-section {
+    background: var(--surface);
+    border-radius: 24px;
+    border: 1px solid #eee;
+    padding: 48px;
+  }
+  .calc-section h2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    font-size: 26px;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .calc-intro {
+    color: var(--text-light);
+    font-size: 15px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .calc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: var(--bg);
+    border-radius: 12px;
+    transition: all 0.2s;
+  }
+  .calc-row:hover { background: #f0ede8; }
+  .calc-label {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .calc-label .icon { font-size: 20px; }
+  .calc-cost {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-left: auto;
+    margin-right: 16px;
+  }
+  .calc-toggle {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    background: #ddd;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .calc-toggle.active { background: var(--green); }
+  .calc-toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  .calc-toggle.active::after { transform: translateX(22px); }
+
+  .calc-total {
+    margin-top: 24px;
+    padding: 28px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+  .calc-total-left {}
+  .calc-total-label {
+    font-size: 14px;
+    opacity: 0.7;
+  }
+  .calc-total-amount {
+    font-family: 'Merriweather', serif;
+    font-size: 40px;
+    font-weight: 900;
+  }
+  .calc-total-note {
+    font-size: 12px;
+    opacity: 0.5;
+    max-width: 220px;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* ===== INFO CARDS ===== */
+  .info-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .info-card {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .info-card h4 {
+    font-family: 'Merriweather', serif;
+    font-size: 15px;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .info-card p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .calc-section { padding: 28px 20px; }
+    .calc-total { flex-direction: column; text-align: center; gap: 12px; }
+    .calc-total-note { text-align: center; max-width: 100%; }
+    .info-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="#">Dashboard</a> <span>›</span> <a href="#">Handige informatie</a> <span>›</span> Uitvaartkosten
+  </div>
+  <h1>Handige informatie</h1>
+  <p>Alles wat je wilt weten over het regelen van een uitvaart, erfrecht en kosten.</p>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>Onderwerpen</h3>
+    <ul>
+      <li><a href="#" class="active">Uitvaartkosten calculator</a></li>
+      <li><a href="#">Wat te regelen na overlijden</a></li>
+      <li><a href="#">Erfrecht uitgelegd</a></li>
+      <li><a href="#">Digitale nalatenschap</a></li>
+      <li><a href="#">Instanties & contacten</a></li>
+      <li><a href="#">Verzekeringen vergelijken</a></li>
+      <li><a href="#">Testament & notaris</a></li>
+      <li><a href="#">Veelgestelde vragen</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="calc-section">
+      <h2>Wat kost een uitvaart?</h2>
+      <p class="calc-intro">Een uitvaart kost gemiddeld tussen de €8.500 en €10.000 in Nederland. Met deze calculator kun je een inschatting maken op basis van jouw wensen.</p>
+
+      <div class="calc-grid">
+        <div class="calc-row">
+          <span class="calc-label"><span class="icon">⚱️</span> Crematie (i.p.v. begrafenis)</span>
+          <span class="calc-cost">~€3.200</span>
+          <div class="calc-toggle active" onclick="this.classList.toggle('active'); updateCalc()"></div>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label"><span class="icon">💐</span> Bloemen en decoratie</span>
+          <span class="calc-cost">~€800</span>
+          <div class="calc-toggle active" onclick="this.classList.toggle('active'); updateCalc()"></div>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label"><span class="icon">🚗</span> Rouwauto en volgauto's</span>
+          <span class="calc-cost">~€1.200</span>
+          <div class="calc-toggle active" onclick="this.classList.toggle('active'); updateCalc()"></div>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label"><span class="icon">🏛️</span> Aula of kerk huren</span>
+          <span class="calc-cost">~€950</span>
+          <div class="calc-toggle active" onclick="this.classList.toggle('active'); updateCalc()"></div>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label"><span class="icon">🪦</span> Grafsteen of monument</span>
+          <span class="calc-cost">~€2.500</span>
+          <div class="calc-toggle" onclick="this.classList.toggle('active'); updateCalc()"></div>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label"><span class="icon">☕</span> Koffietafel / receptie</span>
+          <span class="calc-cost">~€650</span>
+          <div class="calc-toggle active" onclick="this.classList.toggle('active'); updateCalc()"></div>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label"><span class="icon">📜</span> Rouwkaarten drukken</span>
+          <span class="calc-cost">~€350</span>
+          <div class="calc-toggle active" onclick="this.classList.toggle('active'); updateCalc()"></div>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label"><span class="icon">📰</span> Advertentie in krant</span>
+          <span class="calc-cost">~€400</span>
+          <div class="calc-toggle" onclick="this.classList.toggle('active'); updateCalc()"></div>
+        </div>
+      </div>
+
+      <div class="calc-total">
+        <div class="calc-total-left">
+          <div class="calc-total-label">Geschatte kosten</div>
+          <div class="calc-total-amount" id="calcTotal">€ 9.650</div>
+        </div>
+        <div class="calc-total-note">Dit is een indicatie. Werkelijke kosten variëren per regio en aanbieder.</div>
+      </div>
+
+      <div class="info-cards">
+        <div class="info-card">
+          <h4>Basiskosten</h4>
+          <p>Uitvaartondernemer, overlijdensakte, verzorging en kist zijn altijd nodig. Dit kost minimaal ~€2.500.</p>
+        </div>
+        <div class="info-card">
+          <h4>Uitvaartverzekering</h4>
+          <p>Een uitvaartverzekering dekt (een deel van) deze kosten. Vergelijk aanbieders via onze kennisbank.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script>
+  const costs = [3200, 800, 1200, 950, 2500, 650, 350, 400];
+  function updateCalc() {
+    const toggles = document.querySelectorAll('.calc-toggle');
+    let total = 2500;
+    toggles.forEach((t, i) => {
+      if (t.classList.contains('active')) total += costs[i];
+    });
+    document.getElementById('calcTotal').textContent = '€ ' + total.toLocaleString('nl-NL');
+  }
+</script>
+</body>
+</html>

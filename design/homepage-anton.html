@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wat als ik later dood ben</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Special+Gothic+Expanded+One&family=Nunito:wght@300;400;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2C5F7C;
+      --dark: #0f1c24;
+      --green: #5B9A6F;
+      --gold: #D4A857;
+      --bg: #FAF8F5;
+      --surface: #FFFFFF;
+      --text: #2D3436;
+      --text-light: #636E72;
+      --text-muted: #95A5A6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: normal;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      transition: all 0.4s;
+    }
+
+    .nav-dark {}
+
+    .nav.scrolled {
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(16px);
+      padding: 14px 40px;
+      box-shadow: 0 1px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav.scrolled .logo-text {
+      color: var(--dark);
+    }
+
+    .nav.scrolled .nav-links a {
+      color: var(--text);
+    }
+
+    .nav.scrolled .nav-cta {
+      background: var(--dark);
+      color: white;
+    }
+
+    .nav-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 20px;
+      height: 52px;
+      background: white;
+      border-radius: 3px;
+      flex-shrink: 0;
+      transition: background 0.4s;
+    }
+
+    .nav.scrolled .logo-mark {
+      background: var(--dark);
+    }
+
+    .logo-text {
+      font-family: 'Special Gothic Expanded One', sans-serif;
+      font-size: 22px;
+      color: white;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-cta {
+      background: white !important;
+      color: var(--dark) !important;
+      padding: 10px 24px !important;
+      border-radius: 10px !important;
+      font-weight: 800 !important;
+    }
+
+    .nav-app {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 20px;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      border-radius: 10px;
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .nav-app:hover {
+      border-color: white;
+      color: white !important;
+    }
+
+    .nav.scrolled .nav-app {
+      border-color: rgba(15, 28, 36, 0.3);
+      color: var(--dark) !important;
+    }
+
+    .nav.scrolled .nav-app:hover {
+      border-color: var(--dark);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: var(--dark);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 40px 80px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 168, 87, 0.12), transparent 70%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero h1 {
+      font-family: 'Anton SC', sans-serif;
+      font-size: clamp(60px, 10vw, 120px);
+      color: white;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      max-width: 1000px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .accent {
+      color: var(--gold);
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+    }
+
+    .hero-sub {
+      font-size: 21px;
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 50%;
+      line-height: 1.7;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 40px;
+      background: white;
+      color: var(--dark);
+      font-weight: 800;
+      font-size: 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .hero-btn:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(212, 168, 87, 0.3);
+    }
+
+    .hero-btn .arrow {
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .hero-btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .scroll-line {
+      position: absolute;
+      left: 40px;
+      bottom: 0;
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+      z-index: 2;
+    }
+
+
+    /* ===== INTRO ===== */
+    .intro-section {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 120px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .intro-big {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 42px;
+      color: var(--dark);
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .intro-big .hl {
+      color: var(--primary);
+    }
+
+    .intro-text {
+      font-size: 17px;
+      color: var(--text-light);
+      line-height: 1.9;
+      padding-top: 8px;
+    }
+
+    .intro-text p+p {
+      margin-top: 16px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features-section {
+      padding: 0 40px 120px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .features-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      border-top: 3px solid var(--dark);
+      padding-top: 20px;
+    }
+
+    .features-header h2 {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--text-muted);
+    }
+
+    .features-header .count {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+    }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 1fr;
+      gap: 40px;
+      padding: 44px 0;
+      border-bottom: 1px solid #e0ddd8;
+      align-items: start;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .feature-row:hover {
+      padding-left: 20px;
+      padding-right: 20px;
+      margin: 0 -20px;
+      background: rgba(44, 95, 124, 0.02);
+      border-radius: 16px;
+    }
+
+    .feature-num {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 56px;
+      color: #e0ddd8;
+      line-height: 1;
+    }
+
+    .feature-row:hover .feature-num {
+      color: var(--gold);
+    }
+
+    .feature-title {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 32px;
+      color: var(--dark);
+      line-height: 1.1;
+      text-transform: uppercase;
+      padding-top: 6px;
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.8;
+      padding-top: 10px;
+    }
+
+    /* ===== STATEMENT ===== */
+    .statement {
+      background: var(--dark);
+      padding: 140px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .statement::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(91, 154, 111, 0.06), transparent 60%);
+    }
+
+    .statement blockquote {
+      font-family: 'Anton SC', sans-serif;
+      font-size: clamp(32px, 5vw, 64px);
+      color: white;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.1;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .statement blockquote .gold {
+      color: var(--gold);
+    }
+
+    .statement .attr {
+      margin-top: 28px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.25);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== KOSTEN ===== */
+    .cost-section {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 120px 40px;
+    }
+
+    .cost-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 56px;
+    }
+
+    .cost-header h2 {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 52px;
+      color: var(--dark);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .cost-header p {
+      font-size: 17px;
+      color: var(--text-light);
+      line-height: 1.8;
+      padding-top: 8px;
+    }
+
+    .cost-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .cost-card {
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+    }
+
+    .cost-free-card {
+      background: var(--dark);
+      color: white;
+    }
+
+    .cost-free-card .cost-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .cost-free-card h3 {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 28px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .cost-free-card p {
+      font-size: 15px;
+      opacity: 0.55;
+      line-height: 1.7;
+    }
+
+    .cost-option-card {
+      background: var(--surface);
+      border: 2px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cost-option-card h4 {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 22px;
+      color: var(--dark);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .cost-option-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .cost-example {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.7;
+      height: 110px;
+      margin-top: auto;
+    }
+
+    .cost-example strong {
+      color: var(--primary);
+      font-size: 13px;
+    }
+
+    .cost-export-bar {
+      margin-top: 20px;
+      padding: 20px 32px;
+      background: var(--bg);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 2px dashed #d5d0c8;
+    }
+
+    .cost-export-bar p {
+      font-size: 15px;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    .cost-export-bar strong {
+      color: var(--dark);
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: var(--primary);
+      padding: 120px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(212, 168, 87, 0.12), transparent 60%);
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-inner h2 {
+      font-family: 'Anton SC', sans-serif;
+      font-size: clamp(36px, 6vw, 64px);
+      color: white;
+      margin-bottom: 24px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .cta-inner p {
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 36px;
+    }
+
+    .cta-btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 48px;
+      background: white;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 17px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .cta-btn-white:hover {
+      background: var(--gold);
+      color: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    .cta-small {
+      margin-top: 14px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--dark);
+      padding: 60px 40px 32px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .footer-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 24px;
+    }
+
+    .footer-logo {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 20px;
+      color: white;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      max-width: 260px;
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Anton SC', sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.15);
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: rgba(255, 255, 255, 0.45);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 0 auto;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .intro-section {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .feature-row {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .feature-desc {
+        grid-column: 2;
+      }
+
+      .cost-header {
+        grid-template-columns: 1fr;
+      }
+
+      .cost-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 0 24px 60px;
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .intro-section,
+      .features-section,
+      .cost-section {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .feature-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .feature-num {
+        font-size: 36px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .cost-export-bar {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav nav-dark" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark"></div>
+        <span class="logo-text">Wat als ik<br>later dood ben...</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#wat">Over</a></li>
+        <li><a href="#features">Mogelijkheden</a></li>
+        <li><a href="#kosten">Wat kost dit?</a></li>
+        <li><a href="/app" class="nav-app">&#8595; Download app</a></li>
+        <li><a href="#" class="nav-cta">Begin gratis</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="scroll-line"></div>
+    <div class="hero-content">
+      <h1>Ja,<span class="accent">wat</span> dan?</h1>
+      <div class="hero-bottom">
+        <p class="hero-sub">Dan is hier een plek om alles te bewaren wat belangrijk voor je is. Voor jou, voor
+          later, voor
+          diegene die je
+          achterlaat.</p>
+        <a href="#" class="hero-btn">
+          Maak je eigen nalatenschap
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- INTRO -->
+  <section class="intro-section" id="wat">
+    <div class="intro-big">
+      Niemand denkt er graag over na. <span class="hl">En toch is het een van de mooiste dingen die je kunt doen.</span>
+    </div>
+    <div class="intro-text">
+      <p>Op deze plek zorg je dat de mensen die je liefhebt niet alleen staan als jij er niet meer bent. Met
+        persoonlijke herinneringen, met praktische hulp, en met alles wat jij belangrijk vindt.</p>
+      <p>Geen ingewikkelde formulieren. Geen juridisch jargon. Gewoon een fijne plek om het te regelen, op jouw tempo.
+      </p>
+      <p>Ook makkelijke alles bij de hand? <a href="/app" style="color: var(--primary); font-weight: 700;">Download de
+          app</a> voor iOS en Android.</p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="features">
+    <div class="features-header">
+      <h2>Wat kun je allemaal</h2>
+
+    </div>
+    <div class="feature-row">
+      <div class="feature-num">01</div>
+      <div class="feature-title">Laat herinneringen achter</div>
+      <div class="feature-desc">Schrijf brieven, neem video's op, spreek audioboodschappen in. Maak fotoalbums met je
+        verhaal bij elke foto. Kies wanneer en aan wie ze worden bezorgd.</div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-num">02</div>
+      <div class="feature-title">Help je nabestaanden</div>
+      <div class="feature-desc">Na een overlijden moeten er tientallen dingen geregeld worden. Wij helpen stap voor
+        stap: instanties, brieven, documenten, tijdlijnen.</div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-num">03</div>
+      <div class="feature-title">Leg je wensen vast</div>
+      <div class="feature-desc">Begrafenis of crematie, welke muziek, welke bloemen, wie er spreekt. Leg het vast zodat
+        jouw wensen gerespecteerd worden.</div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-num">04</div>
+      <div class="feature-title">Download de app</div>
+      <div class="feature-desc">Alles makkelijk delen zoals leuke foto's van memorabele momenten. <a href="/app"
+          style="color: var(--primary); font-weight: 700; text-decoration: none;">Download de app &darr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement">
+    <blockquote>Later bestaat niet als je er <span class="gold">niet meer bent</span></blockquote>
+    <div class="attr"></div>
+  </section>
+
+  <!-- KOSTEN -->
+  <section class="cost-section" id="kosten">
+    <div class="cost-header">
+      <h2>Wat kost dit?</h2>
+      <p>Beginnen is gratis. Je betaalt pas als je meer opslagruimte of extra functies wilt. Twee opties: losse
+        producten of een
+        abonnement.</p>
+    </div>
+    <div class="cost-grid">
+      <div class="cost-card cost-free-card">
+        <span class="cost-tag">Altijd gratis</span>
+        <h3>Begin zonder te betalen</h3>
+        <p>Herinneringen achterlaten, wensen vastleggen, documenten opslaan en nabestaandenhulp. Gratis, voor altijd.
+        </p>
+      </div>
+      <div class="cost-card cost-option-card">
+        <h4>Losse producten</h4>
+        <p>Betaal alleen voor wat je gebruikt. Bijvoorbeeld extra opslagruimte of een bepaalde functionaliteit.</p>
+        <div class="cost-example">
+          <strong>Bijvoorbeeld:</strong><br>
+          5GB opslag<br>
+          Persoonlijke landingspagina<br>
+          Afdrukken van kaarten of brieven
+        </div>
+      </div>
+      <div class="cost-card cost-option-card">
+        <h4>Abonnement</h4>
+        <p>Alles in één. Meer functies, meer ruimte, altijd voordeliger.</p>
+        <div class="cost-example">
+          <strong>Vanaf €0,99 / maand.</strong><br>
+          Meer opslag, vertrouwens­personen, document generator, priority support.
+        </div>
+      </div>
+    </div>
+    <div class="cost-export-bar">
+      <p><strong>Je data is van jou.</strong> Altijd exporteerbaar, ongeacht je plan.</p>
+      <p>Geen verrassingen.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2> Op jouw tempo, op jouw manier.</h2>
+      <p>Begin vandaag en deel met je naasten, wanneer je wilt.</p>
+      <a href="#" class="cta-btn-white">Maak je eigen nalatenschap <span>&rarr;</span></a>
+      <div class="cta-small"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Wat als ik later dood ben</div>
+        <p class="footer-tagline">Een plek om voor te zorgen dat het goed komt.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="#">Herinneringen</a>
+          <a href="#">Digitale Kluis</a>
+          <a href="#">Nabestaandenhulp</a>
+          <a href="#">Webshop</a>
+        </div>
+        <div class="footer-col">
+          <h4>Informatie</h4>
+          <a href="#">Kennisbank</a>
+          <a href="#">Over ons</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Juridisch</h4>
+          <a href="#">Privacy</a>
+          <a href="#">Voorwaarden</a>
+          <a href="#">AVG / GDPR</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 watalsiklaterdoodben.nl</span>
+      <span>Gemaakt in Nederland</span>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
+    });
+  </script>
+</body>
+
+</html>
