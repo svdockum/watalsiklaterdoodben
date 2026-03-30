@@ -35,7 +35,7 @@
       <div class="intro-text">
         <p>Op deze plek zorg je dat de mensen die je liefhebt niet alleen staan als jij er niet meer bent. Met persoonlijke herinneringen, met praktische hulp, en met alles wat jij belangrijk vindt.</p>
         <p class="mt-4">Geen ingewikkelde formulieren. Geen juridisch jargon. Gewoon een fijne plek om het te regelen, op jouw tempo.</p>
-        <p class="mt-4">Makkelijk alles bij de hand met de app <a href="/app" class="text-[#2C5F7C] font-bold hover:underline">voor iOS en Android</a>.</p>
+        <p class="mt-4">Alles makkelijk bij de hand en bij te werken. Download <a href="/app" class="text-[#2C5F7C] font-bold hover:underline">voor iOS en Android</a>.</p>
       </div>
     </section>
 
@@ -44,7 +44,7 @@
 
       <!-- Features header -->
       <div class="flex justify-between items-end mb-12 border-t-[3px] border-[#0f1c24] pt-5">
-        <h2 class="font-[Anton_SC] text-[14px] uppercase tracking-[4px] text-[#95A5A6]">Wat kun je allemaal</h2>
+        <h2 class="pricing-heading">Wat kun je allemaal</h2>
       </div>
 
       <!-- Feature rows -->
@@ -182,6 +182,13 @@ const features = [
   },
   {
     num: '04',
+    title: 'Social media post ontwerper',
+    desc: 'Ontwerp je eigen social media posts voor na je overlijden. Kies een layout, voeg je foto\'s toe en schrijf je eigen tekst. Zo kunnen je naasten een mooie herinnering delen op social media.',
+    linkText: null,
+    link: null,
+  },
+  {
+    num: '05',
     title: 'Download de app',
     desc: 'Alles makkelijk delen zoals leuke foto\'s van memorabele momenten. ',
     linkText: 'Download de app ↓',
